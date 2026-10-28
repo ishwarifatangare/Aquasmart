@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AquaSmart – Detect, Collect, Recycle</title>
+<style>
+:root{--bg:#f4f9fb;--card:#fff;--tx:#10303c;--mu:#51707d;--ac:#0a8ca8;--ac2:#14a37f;--bd:#d5e5eb;--bad:#d64545;--warn:#d99a1a;--ok:#14a37f;--code:#0f2530;--codetx:#bfe9f5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1a21;--card:#122630;--tx:#e3f3f8;--mu:#93b3bf;--ac:#3cc4e0;--ac2:#3ed1a6;--bd:#21404d;--code:#07121722;--codetx:#bfe9f5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1a21;--card:#122630;--tx:#e3f3f8;--mu:#93b3bf;--ac:#3cc4e0;--ac2:#3ed1a6;--bd:#21404d;--code:#071217;--codetx:#bfe9f5;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1000px;margin:auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--bd);z-index:5}
+nav .w{display:flex;gap:18px;align-items:center;overflow-x:auto;padding-top:10px;padding-bottom:10px;white-space:nowrap}
+nav b{color:var(--ac);font-size:18px}nav a{color:var(--mu);text-decoration:none;font-size:14px}nav a:hover{color:var(--ac)}
+header.h{padding:60px 0 40px;text-align:center}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 14px}
+h1 span{background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mu);max-width:660px;margin:0 auto 22px;font-size:18px}
+.btn{display:inline-block;background:var(--ac);color:#fff;padding:11px 22px;border-radius:999px;text-decoration:none;font-weight:600;border:0;cursor:pointer;font-size:15px}
+.btn.o{background:none;color:var(--ac);border:1.5px solid var(--ac);margin-left:8px}
+section{padding:38px 0}h2{font-size:28px;margin:0 0 6px}.sub{color:var(--mu);margin:0 0 22px}
+.g{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.c h3{margin:6px 0 6px;font-size:18px}.c p{margin:0;color:var(--mu);font-size:15px}.ic{font-size:30px}
+.stat{font-size:30px;font-weight:700;color:var(--ac)}
+label{display:block;font-size:14px;margin:14px 0 2px;color:var(--mu)}label b{color:var(--tx);float:right}
+input[type=range]{width:100%;accent-color:var(--ac)}input[type=number]{width:100%;padding:9px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:15px}
+.badge{display:inline-block;padding:6px 16px;border-radius:999px;color:#fff;font-weight:700;font-size:18px}
+.res{font-size:34px;font-weight:700;color:var(--ac2)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.st{flex:1 1 120px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;text-align:center;font-size:14px}
+.st i{display:block;font-style:normal;font-size:26px}.ar{align-self:center;color:var(--ac);font-size:22px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--bd)}th{color:var(--mu);font-weight:600}
+.scroll{overflow-x:auto}
+pre{background:var(--code);color:var(--codetx);padding:16px;border-radius:14px;overflow-x:auto;font-size:13px;line-height:1.5;margin:0}
+ul.t{padding-left:20px;color:var(--mu)}ul.t li{margin:6px 0}
+footer{padding:30px 0;text-align:center;color:var(--mu);font-size:14px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<nav><div class="w"><b>💧 AquaSmart</b><a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#detect">Detect</a><a href="#rain">Rainwater</a><a href="#recycle">Recycle</a><a href="#cost">Cost</a></div></nav>
+
+<header class="h"><div class="w">
+<h1>Smart, affordable water care:<br><span>Detect. Collect. Recycle.</span></h1>
+<p class="lead">A low-cost IoT system that spots polluted water in real time, harvests rainwater, and treats wastewater for safe reuse, so communities waste less and pollute less.</p>
+<a class="btn" href="#detect">Try the live tools</a><a class="btn o" href="#solution">How it works</a>
+</div></header>
+
+<section id="problem"><div class="w">
+<h2>The problem</h2><p class="sub">Clean water is lost in three ways at once.</p>
+<div class="g">
+<div class="c"><div class="ic">☠️</div><h3>Undetected pollution</h3><p>Lab testing is slow and costly, so contaminated water is often used or released before anyone knows.</p></div>
+<div class="c"><div class="ic">🌧️</div><h3>Wasted rainfall</h3><p>Rain runs off roofs into drains and floods, then communities face shortages in dry months.</p></div>
+<div class="c"><div class="ic">🚿</div><h3>Throwaway wastewater</h3><p>Bath, laundry and kitchen water (greywater) is drained although it can safely flush toilets and irrigate gardens after treatment.</p></div>
+</div></div></section>
+
+<section id="solution"><div class="w">
+<h2>Our solution: one system, three loops</h2><p class="sub">Built from cheap, easily available parts and designed for homes, schools, apartments and villages.</p>
+<div class="flow">
+<div class="st"><i>🌧️</i>Roof rain</div><div class="ar">→</div>
+<div class="st"><i>🧹</i>First-flush diverter + mesh filter</div><div class="ar">→</div>
+<div class="st"><i>🛢️</i>Storage tank<br>(level sensor)</div><div class="ar">→</div>
+<div class="st"><i>📡</i>Quality sensors (pH, turbidity, TDS)</div><div class="ar">→</div>
+<div class="st"><i>✅</i>Safe use / ⚠️ alert</div>
+</div>
+<p style="height:10px"></p>
+<div class="g">
+<div class="c"><div class="stat">1</div><h3>Detect</h3><p>An ESP32 reads pH, turbidity and TDS sensors every few seconds, classifies the water, and sends alerts to a dashboard or phone.</p></div>
+<div class="c"><div class="stat">2</div><h3>Collect</h3><p>Roof runoff passes a first-flush diverter that discards the dirty first rain, then fills a tank monitored by a level sensor.</p></div>
+<div class="c"><div class="stat">3</div><h3>Recycle</h3><p>Greywater goes through screen, sand and carbon filtration, then UV disinfection. A sensor check decides if it is released for reuse or sent back for re-treatment.</p></div>
+</div></div></section>
+
+<section id="detect"><div class="w">
+<h2>1 · Water quality detector</h2><p class="sub">Move the sliders as if they were live sensor readings. Thresholds follow common drinking-water guidelines (BIS / WHO): pH 6.5–8.5, turbidity under 5 NTU, TDS under 500 mg/L.</p>
+<div class="g">
+<div class="c">
+<label>pH <b id="vph">7.2</b></label><input id="ph" type="range" min="0" max="14" step="0.1" value="7.2">
+<label>Turbidity (NTU) <b id="vtu">2</b></label><input id="tu" type="range" min="0" max="100" step="1" value="2">
+<label>TDS (mg/L) <b id="vtd">220</b></label><input id="td" type="range" min="0" max="2000" step="10" value="220">
+</div>
+<div class="c"><div id="badge" class="badge">Safe</div><p id="msg" style="margin:14px 0 0;color:var(--tx)"></p><ul id="acts" class="t"></ul></div>
+</div>
+<p style="color:var(--mu);font-size:14px">Note: these three sensors flag likely problems but cannot detect germs, heavy metals or chemicals. Treat this as a low-cost early-warning layer and confirm drinking-water safety with periodic lab tests.</p>
+</div></section>
+
+<section id="rain"><div class="w">
+<h2>2 · Rainwater harvesting calculator</h2><p class="sub">Estimate how much water your roof can collect in a year.</p>
+<div class="g">
+<div class="c">
+<label>Roof catchment area (m²)</label><input id="ar" type="number" value="100" min="1">
+<label>Annual rainfall (mm)</label><input id="rf" type="number" value="700" min="1">
+<label>Roof type</label>
+<select id="co" style="width:100%;padding:9px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:15px">
+<option value="0.85">Concrete / tile (0.85)</option><option value="0.9">Metal sheet (0.90)</option><option value="0.7">Thatched / rough (0.70)</option></select>
+</div>
+<div class="c"><p>Harvestable water per year</p><div class="res" id="lit">0 L</div>
+<p id="use" style="margin-top:10px"></p>
+<p style="margin-top:10px;font-size:13px">Formula: area × rainfall × runoff coefficient × 0.9 (first-flush and filter losses).</p></div>
+</div></div></section>
+
+<section id="recycle"><div class="w">
+<h2>3 · Wastewater recycling train</h2><p class="sub">Greywater treatment in five low-cost stages.</p>
+<div class="flow">
+<div class="st"><i>🧺</i>Screen<br>removes hair, lint</div><div class="ar">→</div>
+<div class="st"><i>🛢️</i>Settling tank<br>oil &amp; solids</div><div class="ar">→</div>
+<div class="st"><i>⏳</i>Sand + gravel bed<br>fine particles</div><div class="ar">→</div>
+<div class="st"><i>⚫</i>Activated carbon<br>odour &amp; chemicals</div><div class="ar">→</div>
+<div class="st"><i>🔆</i>UV / chlorine<br>kills germs</div>
+</div>
+<p style="height:10px"></p>
+<div class="c"><h3>Reuse decision</h3>
+<p>The ESP32 checks the treated water. If pH, turbidity and TDS are within limits, a relay opens the valve to the reuse tank (toilet flushing, gardening, cleaning, construction). Otherwise it sends the water back through the filters and raises an alert.</p>
+<p style="margin-top:8px">Treated greywater is for non-drinking use unless it is further purified and lab-verified.</p></div>
+</div></section>
+
+<section id="cost"><div class="w">
+<h2>Affordable by design</h2><p class="sub">Approximate cost of one smart monitoring node (Indian market, rounded).</p>
+<div class="c scroll"><table><tr><th>Part</th><th>Purpose</th><th>Approx. cost</th></tr>
+<tr><td>ESP32 board</td><td>Brain + Wi-Fi</td><td>₹500</td></tr>
+<tr><td>pH sensor module</td><td>Acidity / alkalinity</td><td>₹1,500</td></tr>
+<tr><td>Turbidity sensor</td><td>Cloudiness</td><td>₹400</td></tr>
+<tr><td>TDS sensor</td><td>Dissolved solids</td><td>₹600</td></tr>
+<tr><td>Ultrasonic level sensor</td><td>Tank level</td><td>₹200</td></tr>
+<tr><td>Relay + solenoid valve</td><td>Route water</td><td>₹600</td></tr>
+<tr><td><b>Total electronics</b></td><td></td><td><b>≈ ₹3,800</b></td></tr></table></div>
+<p style="color:var(--mu);font-size:14px">Tanks, filters and plumbing are extra and depend on size. Prices are estimates and vary by seller.</p>
+<div class="g" style="margin-top:16px">
+<div class="c"><h3>Community impact</h3><ul class="t"><li>Less groundwater and municipal water use</li><li>Early warning of contamination</li><li>Fewer polluted discharges into rivers</li><li>Lower water bills</li></ul></div>
+<div class="c"><h3>Rollout plan</h3><ul class="t"><li>Pilot in one school or housing society</li><li>Train local volunteers to maintain filters</li><li>Share data on a community dashboard</li><li>Scale to wards and villages</li></ul></div>
+</div></div></section>
+
+<footer><div class="w">AquaSmart · Detect polluted water · Harvest rain · Recycle wastewater<br>Educational prototype: always verify drinking-water safety with certified lab testing.</div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+function quality(){
+  const ph=+$('ph').value,tu=+$('tu').value,td=+$('td').value;
+  $('vph').textContent=ph.toFixed(1);$('vtu').textContent=tu;$('vtd').textContent=td;
+  let lvl=0;const acts=[];
+  if(ph<6.0||ph>9.0){lvl=2;acts.push('pH is far outside range: check for acid/alkali contamination.')}
+  else if(ph<6.5||ph>8.5){lvl=Math.max(lvl,1);acts.push('Adjust pH (e.g. neutralising filter or limestone bed).')}
+  if(tu>25){lvl=2;acts.push('Very cloudy: likely sewage, silt or industrial discharge.')}
+  else if(tu>5){lvl=Math.max(lvl,1);acts.push('Add sand filtration or settling to reduce turbidity.')}
+  if(td>1000){lvl=2;acts.push('Very high dissolved solids: needs reverse osmosis or a new source.')}
+  else if(td>500){lvl=Math.max(lvl,1);acts.push('High TDS: consider RO or blending with rainwater.')}
+  const b=$('badge');
+  const cfg=[['Safe','var(--ok)','Readings are within guideline limits. Valve opens to the reuse tank.'],
+             ['Needs treatment','var(--warn)','Not ready for use. Water is routed back through the filters.'],
+             ['Unsafe: alert sent','var(--bad)','Do not use. Valve locked and an alert goes to the community dashboard.']][lvl];
+  b.textContent=cfg[0];b.style.background=cfg[1];$('msg').textContent=cfg[2];
+  $('acts').innerHTML=acts.map(a=>'<li>'+a+'</li>').join('');
+}
+function rain(){
+  const a=+$('ar').value||0,r=+$('rf').value||0,c=+$('co').value;
+  const L=Math.round(a*r*c*0.9);
+  $('lit').textContent=L.toLocaleString('en-IN')+' L';
+  $('use').textContent='Enough for about '+Math.round(L/(135*4))+' days of drinking, cooking and bathing for a family of 4 (at 135 L per person per day), or '+Math.round(L/1000)+' kL for gardens and flushing.';
+}
+['ph','tu','td'].forEach(i=>$(i).addEventListener('input',quality));
+['ar','rf','co'].forEach(i=>$(i).addEventListener('input',rain));
+quality();rain();
+</script>
+</body>
+</html>
